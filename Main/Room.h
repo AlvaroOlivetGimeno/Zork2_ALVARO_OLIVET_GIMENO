@@ -31,6 +31,8 @@ struct Room
 	void OutputCloseDoors();
 	bool ICanGoTo(Direction direction);
 
+	bool RoomIsClosed(Direction direction);
+
 	
 
 	string name;

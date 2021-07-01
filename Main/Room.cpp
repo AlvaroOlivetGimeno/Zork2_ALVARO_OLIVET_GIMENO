@@ -98,23 +98,45 @@ void Room::OutputRoomInfo()
 
 bool Room::ICanGoTo(Direction direction)
 {
-	if (direction == NORTH && roomNeighbortNorth != nullptr && conditionNorth)
+	if (direction == NORTH && roomNeighbortNorth != nullptr )
 	{
 		return true;
 	}
-	else if (direction == SOUTH && roomNeighbortSouth != nullptr && conditionSouth)
+	else if (direction == SOUTH && roomNeighbortSouth != nullptr)
 	{
 		return true;
 	}
-	else if (direction == EAST && roomNeighbortEast != nullptr && conditionEast)
+	else if (direction == EAST && roomNeighbortEast != nullptr)
 	{
 		return true;
 	}
-	else if (direction == WEST && roomNeighbortWest != nullptr && conditionWest)
+	else if (direction == WEST && roomNeighbortWest != nullptr )
 	{
 		return true;
 	}
 
+	return false;
+}
+
+bool Room::RoomIsClosed(Direction direction)
+{
+	if (direction == NORTH && conditionNorth)
+	{
+		return true;
+	}
+	else if (direction == SOUTH && conditionSouth)
+	{
+		return true;
+	}
+	else if (direction == EAST && conditionEast)
+	{
+		return true;
+
+	}
+	else if (direction == WEST && conditionWest)
+	{
+		return true;
+	}
 	return false;
 }
 

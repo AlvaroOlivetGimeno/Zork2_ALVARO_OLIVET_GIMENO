@@ -134,8 +134,15 @@ void Program::PlayerDesition()
 	{
 		if (p_currentRoom->ICanGoTo(NORTH))
 		{
-			status = "Avanzas hacia el NORTE";
-			p_currentRoom = p_currentRoom->roomNeighbortNorth;
+			if (!p_currentRoom->RoomIsClosed(NORTH))
+			{
+				status = "Puerta cerrada";
+			}
+			else
+			{
+				status = "Avanzas hacia el NORTE";
+				p_currentRoom = p_currentRoom->roomNeighbortNorth;
+			}
 		}
 		else
 		{
@@ -148,8 +155,44 @@ void Program::PlayerDesition()
 	{
 		if (p_currentRoom->ICanGoTo(SOUTH))
 		{
-			status = "Avanzas hacia el SUD";
-			p_currentRoom = p_currentRoom->roomNeighbortSouth;
+			if (!p_currentRoom->RoomIsClosed(SOUTH))
+			{
+				if (p_currentItem != nullptr)
+				{
+					if (p_currentItem->name == "llave" && p_currentRoom->name == "Entrada de la casa")
+					{
+						p_rooms[0]->LockCloseDoor();
+						status = "Abres la puerta con la llave";
+						p_currentRoom = p_currentRoom->roomNeighbortSouth;
+					}
+					else if (p_currentItem->name == "pulpo" && p_currentRoom->name == "Pasillo oeste")
+					{
+						p_rooms[6]->LockCloseDoor();
+						status = "Colocas la insigna de pulpo y... Abres la puerta";
+						p_currentRoom = p_currentRoom->roomNeighbortSouth;
+					}
+					else if (p_currentItem->name == "cuchillo" && p_currentRoom->name == "Comedor")
+					{
+						p_rooms[8]->LockCloseDoor();
+						status = "Con esfuerzo fuerzas la cerradura y entras en la sala";
+						p_currentRoom = p_currentRoom->roomNeighbortSouth;
+					}
+				}
+				else
+				{
+					status = "Puerta cerrada";
+				}
+				
+			}
+			else
+			{
+				
+				
+				status = "Avanzas hacia el SUD";
+				p_currentRoom = p_currentRoom->roomNeighbortSouth;
+				
+				
+			}
 		}
 		else
 		{
@@ -162,8 +205,15 @@ void Program::PlayerDesition()
 	{
 		if (p_currentRoom->ICanGoTo(EAST))
 		{
-			status = "Avanzas hacia el ESTE";
-			p_currentRoom = p_currentRoom->roomNeighbortEast;
+			if (!p_currentRoom->RoomIsClosed(EAST))
+			{
+				status = "Puerta cerrada";
+			}
+			else
+			{
+				status = "Avanzas hacia el ESTE";
+				p_currentRoom = p_currentRoom->roomNeighbortEast;
+			}
 		}
 		else
 		{
@@ -176,8 +226,16 @@ void Program::PlayerDesition()
 	{
 		if (p_currentRoom->ICanGoTo(WEST))
 		{
-			status = "Avanzas hacia el OESTE";
-			p_currentRoom = p_currentRoom->roomNeighbortWest;
+			if (!p_currentRoom->RoomIsClosed(WEST))
+			{
+				status = "Puerta cerrada";
+			}
+			else
+			{
+				status = "Avanzas hacia el OESTE";
+				p_currentRoom = p_currentRoom->roomNeighbortWest;
+			}
+			
 		}
 		else
 		{
@@ -188,7 +246,7 @@ void Program::PlayerDesition()
 	}
 	else if (p_currentRoom->iHaveAnItem)
 	{
-		if (userInput == p_items[p_currentRoom->numberOfTheItem]->name)
+		if (userInput == p_items[p_currentRoom->numberOfTheItem]->name || userInput == "coger" || userInput == "Coger" || userInput == "COGER")
 		{
 			if (p_currentItem == nullptr)
 			{
@@ -233,7 +291,7 @@ void Program::PlayerDesition()
 				}
 
 				p_currentItem = nullptr;
-				status = "Has soltado el objeto (este vuelve a su sitio de origen)";
+				status = "Has soltado el objeto (este objeto se queda en la sala donde lo dejes)";
 			}
 		}
 		else
@@ -296,22 +354,17 @@ void Program::DesbloqueoDePuertas(string nameOfItem)
 {
 	if (nameOfItem == "llave")
 	{
-		p_rooms[0]->LockCloseDoor();
+		//p_rooms[0]->LockCloseDoor();
 		SumPuntuation();
 	}
 	if (nameOfItem == "pulpo")
 	{
-		p_rooms[6]->LockCloseDoor();
+		//p_rooms[6]->LockCloseDoor();
 		SumPuntuation();
 	}
 	if (nameOfItem == "cuchillo")
 	{
-		p_rooms[8]->LockCloseDoor();
-		SumPuntuation();
-	}
-	if (nameOfItem == "cuchillo")
-	{
-		p_rooms[8]->LockCloseDoor();
+		//p_rooms[8]->LockCloseDoor();
 		SumPuntuation();
 	}
 	if (nameOfItem == "tesoro")
