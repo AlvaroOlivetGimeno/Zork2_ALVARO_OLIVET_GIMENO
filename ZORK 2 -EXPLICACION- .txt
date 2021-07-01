@@ -1,0 +1,9 @@
+ZORK 2:
+En este proyecto se ha realizado una versión del juego Zork echo por Alvaro Olivet Gimeno.
+Consta de una clase Main() encargada hacer funcionar el juego. Una clase Program() encargada de todo aquello que pasa en el juego (decisiones, inicializar variables, mapa etc…). También tenemos una clase Room() y una Item() que se encargan de sus respectivas funciones.
+Para hacer dicho proyecto se parte del mapa siguiente:(la imagen se puede ver en el .png)
+Existen 3 puertas bloqueadas y 4 ítems para recolectar. Estos se pueden coger y soltar a gusto. En caso de querer coger un ítem si ya tienes el inventario lleno deberás soltarlo en otra sala. Cada objeto recolectado suma puntuación, y cada acción es un movimiento. 
+Cuando se consigue el tesoro final el juego finaliza. 
+LINK A GIT 1: https://github.com/AlvaroOlivetGimeno/Zork2_ALVARO_OLIVET_GIMENO.git
+LINK A GIT 2: git@github.com:AlvaroOlivetGimeno/Zork2_ALVARO_OLIVET_GIMENO.git
+
