@@ -9,6 +9,14 @@ Program :: Program()
 	
 }
 
+void Program::SumPuntuation()
+{
+	puntuation += 10;
+}
+void Program::SumMovments()
+{
+	movments += 1;
+}
 
 
 int Program::CreateRoom(string name, string description)
@@ -240,6 +248,7 @@ void Program::PlayerDesition()
 	{
 		status = "Accion incorrecta";
 	}
+	SumMovments();
 	cout << status << endl;
 	Pause();
 	
@@ -252,6 +261,10 @@ void Program::Title()
 	cout << "\t" << "\t" << "\t" << "|   ALVARO's ZORK   |" << endl;
 	cout << "\t" << "\t" << "\t" << " -------------------" << endl;
 	cout << endl << endl;
+	cout << "Puntuacio: " << puntuation;
+	cout << "\n";
+	cout << "Movimientos: " << movments;
+	cout << "\n";
 	cout << "Item: ";
 	if (p_currentItem != nullptr)
 	{
@@ -284,21 +297,26 @@ void Program::DesbloqueoDePuertas(string nameOfItem)
 	if (nameOfItem == "llave")
 	{
 		p_rooms[0]->LockCloseDoor();
+		SumPuntuation();
 	}
 	if (nameOfItem == "pulpo")
 	{
 		p_rooms[6]->LockCloseDoor();
+		SumPuntuation();
 	}
 	if (nameOfItem == "cuchillo")
 	{
 		p_rooms[8]->LockCloseDoor();
+		SumPuntuation();
 	}
 	if (nameOfItem == "cuchillo")
 	{
 		p_rooms[8]->LockCloseDoor();
+		SumPuntuation();
 	}
 	if (nameOfItem == "tesoro")
 	{
+		SumPuntuation();
 		exit(1);
 	}
 }

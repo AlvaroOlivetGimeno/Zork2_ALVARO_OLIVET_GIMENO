@@ -15,6 +15,10 @@ class Program
 {
 public:
 	Program();
+
+	void SumPuntuation();
+
+	void SumMovments();
 	
 	void Run();
 
@@ -46,6 +50,8 @@ private:
 
 	bool p_done;
 
+	int puntuation = 0;
+	int movments =0;
 
 
 };
